@@ -52,9 +52,11 @@ class Speedtester:
                 f"服务商: {self.get_sponsor()}\n" \
                 f"上传速度: {self.get_speed('upload')}\n" \
                 f"下载速度: {self.get_speed('download')}\n" \
+                f"上传流量: {self.get_speed('upload')}\n" \
+                f"下载流量: {self.get_speed('download')}\n" \
                 f"延迟: {self.get_ping('latency')} 抖动: {self.get_ping('jitter')}\n" \
-                f"测速时间: {self.get_time()}" \
-                f"测速结果URL: {self.__output.get('result').get('url')}"
+                f"测速时间: {self.get_time()}\n" \
+                f"URL: {self.__output.get('result').get('url')}"
             return text, f"{self.__output.get('result').get('url')}.png"
 
     async def list_servers_ids(self, cmd: str) -> str:
@@ -106,6 +108,23 @@ class Speedtester:
                 n = n + 1
             return f"{bits:.3f} {units.get(n)}"
         return f"`{convert(self.__output.get(opt).get('bandwidth')*8)}`"
+
+    def get_usage(self, opt: str) -> str:
+        def convert(bits) -> str:
+            power = 1000
+            n = 0
+            units = {
+                0: 'bit',
+                1: 'KB',
+                2: 'MB',
+                3: 'GB',
+                4: 'TB'
+            }
+            while bits > power:
+                bits = bits / power
+                n = n + 1
+            return f"{bits:.3f} {units.get(n)}"
+        return f"`{convert(self.__output.get(opt).get('bytes'))}`"
 
     def get_ping(self, opt: str) -> str:
         return f"`{self.__output.get('ping').get(opt):.3f}`"
