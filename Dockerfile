@@ -1,5 +1,5 @@
 FROM python:3.11-alpine
-LABEL maintainer=metamee
+LABEL maintainer=angrydust
 
 WORKDIR /sycgram
 COPY . /sycgram
