@@ -109,10 +109,12 @@ view_docker_log(){
 uninstall_sycgram(){
     delete_old_image_and_container;
     rm -rf ${project_path}
+    echo -e "已删除${PROJECT_PATH}"
 }
 
 reinstall_sycgram(){
     rm -rf ${PROJECT_PATH}
+    echo -e "已删除${PROJECT_PATH}"
     install_sycgram "-it"
 }
 
