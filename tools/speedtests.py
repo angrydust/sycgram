@@ -53,7 +53,8 @@ class Speedtester:
                 f"上传速度: {self.get_speed('upload')}\n" \
                 f"下载速度: {self.get_speed('download')}\n" \
                 f"延迟: {self.get_ping('latency')} 抖动: {self.get_ping('jitter')}\n" \
-                f"测速时间: {self.get_time()}"
+                f"测速时间: {self.get_time()}" \
+                f"测速结果URL: {self.__output.get('result').get('url')}"
             return text, f"{self.__output.get('result').get('url')}.png"
 
     async def list_servers_ids(self, cmd: str) -> str:
