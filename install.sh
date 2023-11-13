@@ -60,7 +60,7 @@ delete_old_image_and_container(){
     curl -fsL ${remote_file} > ${local_cmd_file}
 
     echo -e "${yellow}正在删除旧版本容器...${plain}"
-    docker rm -f $(docker ps -a | grep ${CONTAINER_NAME} | awk '{print $1}')
+    docker rm -f ${CONTAINER_NAME}
 
     echo -e "${yellow}正在删除旧版本镜像...${plain}"
     docker image rm -f $(docker images | grep ${CONTAINER_NAME} | awk '{print $3}')
