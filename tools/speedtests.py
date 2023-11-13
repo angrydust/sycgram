@@ -52,9 +52,8 @@ class Speedtester:
                 f"服务商: {self.get_sponsor()}\n" \
                 f"下载速度: {self.get_speed('download')}\n" \
                 f"上传速度: {self.get_speed('upload')}\n" \
-                f"下载流量: {self.get_usage('download')}\n" \
-                f"上传流量: {self.get_usage('upload')}\n" \
-                f"延迟: {self.get_ping('latency')} 抖动: {self.get_ping('jitter')}\n" \
+                f"消耗流量: {self.get_usage()}\n" \
+                f"延迟: {self.get_ping('latency')}    抖动: {self.get_ping('jitter')}\n" \
                 f"测速时间: {self.get_time()}\n" \
                 f"URL: {self.__output.get('result').get('url')}"
             return text, f"{self.__output.get('result').get('url')}.png"
@@ -109,7 +108,7 @@ class Speedtester:
             return f"{bits:.3f} {units.get(n)}"
         return f"`{convert(self.__output.get(opt).get('bandwidth')*8)}`"
 
-    def get_usage(self, opt: str) -> str:
+    def get_usage(self) -> str:
         def convert(bits) -> str:
             power = 1000
             n = 0
@@ -124,7 +123,7 @@ class Speedtester:
                 bits = bits / power
                 n = n + 1
             return f"{bits:.3f} {units.get(n)}"
-        return f"`{convert(self.__output.get(opt).get('bytes'))}`"
+        return f"`{convert(self.__output.get('upload').get('bytes') + self.__output.get('download').get('bytes'))}`"
 
     def get_ping(self, opt: str) -> str:
         return f"`{self.__output.get('ping').get(opt):.3f}`"
