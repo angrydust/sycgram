@@ -137,3 +137,5 @@ data/download*
 *.debug.sh
 READ.md
 .deprecated
+
+/.idea
