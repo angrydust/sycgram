@@ -48,15 +48,15 @@ async def speedtest(_: Client, msg: Message):
                 return await show_exception(msg, "测速超时")
         else:
             return await show_cmd_tip(msg, cmd)
-    # await delete_this(msg)
+    await delete_this(msg)
     if not link:
         return await msg.edit_text(text)
 
     # send speed report
     try:
-        await msg.edit_text(photo=link, caption=text, parse_mode=ParseMode.MARKDOWN)
+        await msg.reply_photo(photo=link, caption=text, parse_mode=ParseMode.MARKDOWN)
     except FloodWait as e:
         await asyncio.sleep(e.x)
-        await msg.edit_text(photo=link, caption=text, parse_mode=ParseMode.MARKDOWN)
+        await msg.reply_photo(photo=link, caption=text, parse_mode=ParseMode.MARKDOWN)
     except Exception as e:
         await show_exception(msg, e)
