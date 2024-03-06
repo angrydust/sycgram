@@ -23,6 +23,11 @@ dme:
   format: -dme <数量>
   usage: 直接使用。批量删除消息, 范围：1 ~ 1500，默认：1
 
+da:
+  cmd: da
+  format: -da true
+  usage: 删除所有消息，有权限则删除
+
 f:
   cmd: f
   format: -f <数量>
