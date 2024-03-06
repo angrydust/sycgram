@@ -59,7 +59,7 @@ async def dme(client: Client, message: Message):
         await client.delete_messages(message.chat.id, ids_deleted)
     text = f"🧹删除 {counter} 条消息使用了 {time.time() - start:.3f} 秒。"
     res = await message.reply(text)
-    await asyncio.sleep(3)
+    await asyncio.sleep(1)
     await res.delete()
     # log
     logger.success(f"{cmd} | {text}")
