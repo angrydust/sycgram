@@ -3,7 +3,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 
 
-@Client.on_message(command="da")
+@Client.on_message(command=('da'))
 async def da(context):
     if len(context.parameter) > 2 or len(context.parameter) == 0:
         await context.edit("\n呜呜呜，请执行 `-da true` 来删除所有消息。")
