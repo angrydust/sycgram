@@ -3,8 +3,10 @@ from asyncio import sleep
 from pyrogram import Client
 from pyrogram.types import Message
 
+from core import command
 
-@Client.on_message(command=('da'))
+
+@Client.on_message(command('da'))
 async def da(cli: Client, msg: Message):
     if len(msg.parameter) > 2 or len(msg.parameter) == 0:
         await msg.edit_text("\n呜呜呜，请执行 `-da true` 来删除所有消息。")
