@@ -54,9 +54,9 @@ async def speedtest(_: Client, msg: Message):
 
     # send speed report
     try:
-        await msg.reply_photo(photo=link, caption=text, parse_mode=ParseMode.MARKDOWN)
+        await _.send_photo(msg.chat.id, photo=link, caption=text, parse_mode=ParseMode.MARKDOWN)
     except FloodWait as e:
         await asyncio.sleep(e.x)
-        await msg.reply_photo(photo=link, caption=text, parse_mode=ParseMode.MARKDOWN)
+        await _.send_photo(msg.chat.id, photo=link, caption=text, parse_mode=ParseMode.MARKDOWN)
     except Exception as e:
         await show_exception(msg, e)
