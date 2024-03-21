@@ -140,7 +140,7 @@ install_sycgram(){
     --network host \
     --hostname ${container_name} \
     -v ${PROJECT_PATH}/data:/sycgram/data \
-    ${GITHUB_IMAGE_PATH}:main
+    ${GITHUB_IMAGE_PATH}
 }
 
 show_menu() {
