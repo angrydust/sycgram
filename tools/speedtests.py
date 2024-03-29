@@ -51,6 +51,7 @@ class Speedtester:
                 f"测速点: {self.get_server()}\n" \
                 f"服务商: {self.get_sponsor()}\n" \
                 f"消耗流量: {self.get_usage()}\n" \
+                f"测速时间: {self.get_time()}\n" \
                 f"URL: {self.__output.get('result').get('url')}"
             return text, f"{self.__output.get('result').get('url')}.png"
 
@@ -73,7 +74,6 @@ class Speedtester:
 
     def get_server(self) -> str:
         location = self.__server.get('location')
-        # country = self.__server.get('country')
         return f"`{location}`"
 
     def get_sponsor(self) -> str:
