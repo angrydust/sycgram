@@ -55,8 +55,8 @@ class Speedtester:
             text = f"**[Speedtest]({self.get_url()})**\n" \
                 f"`测速点: {self.get_sponsor()}`\n" \
                 f"`本次用量: {self.get_usage()}`\n" \
-                f"`上传速度: {self.get_speed('upload')}`\n" \
                 f"`下载速度: {self.get_speed('download')}`\n" \
+                f"`上传速度: {self.get_speed('upload')}`\n" \
                 f"`延迟: `{self.get_ping('latency')} ms \n" \
                 f"`CST: {self.get_time()}`\n"
             return text, f"{self.get_url()}.png"
@@ -99,20 +99,20 @@ class Speedtester:
         """
         def convert(bits) -> str:
             """Unit conversion"""
-            power = 1000
+            power = 1024
             n = 0
             units = {
-                0: 'bps',
-                1: 'Kbps',
-                2: 'Mbps',
-                3: 'Gbps',
-                4: 'Tbps'
+                0: 'B/s',
+                1: 'KB/s',
+                2: 'MB/s',
+                3: 'GB/s',
+                4: 'TB/s'
             }
             while bits > power:
                 bits = bits / power
                 n = n + 1
             return f"{bits:.2f} {units.get(n)}"
-        return f"`{convert(self.__output.get(opt).get('bandwidth')*8)}`"
+        return f"`{convert(self.__output.get(opt).get('bandwidth'))}`"
 
     def get_usage(self) -> str:
         def convert(bits) -> str:
