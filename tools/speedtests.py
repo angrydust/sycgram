@@ -50,7 +50,7 @@ class Speedtester:
             text = f"**[Speedtest]({self.__output.get('result').get('url')})**\n" \
                 f"`测速点: {self.get_server()}`\n" \
                 f"`服务商: {self.get_sponsor()}`\n" \
-                f"`消耗流量: {self.get_usage()}`\n" \
+                f"`本次用量: {self.get_usage()}`\n" \
                 f"`延迟: `{self.get_ping('latency')} ms \n" \
                 f"`CST: {self.get_time()}`\n"
             return text, f"{self.__output.get('result').get('url')}.png"
