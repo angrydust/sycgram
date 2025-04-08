@@ -10,7 +10,7 @@
 
 ```shell
 # 脚本的【安装】都是前台运行，完成安装后如无报错可先后使用Ctrl+P、Ctrl+Q挂到后台运行
-bash <(curl -fsL "https://raw.githubusercontent.com/angrydust/sycgram/main/install.sh")
+wget https://raw.githubusercontent.com/angrydust/sycgram/main/install.sh -O sycgram.sh && chmod +x sycgram.sh && bash sycgram.sh
 ```
 
 ## 更新存在的问题
