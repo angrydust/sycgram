@@ -20,7 +20,7 @@ multidict==6.0.4
 Pillow==10.1.0
 pinyin==0.4.0
 pyaes==1.6.1
-pyrogram @ git+https://github.com/TeamPGM/pyrogram@1.5.3
+pyrogram @ git+https://github.com/TeamPGM/pyrogram@1.5.4
 PySocks==1.7.1
 PyYAML==6.0.1
 soupsieve==2.5
