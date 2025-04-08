@@ -109,7 +109,7 @@ class Speedtester:
             while bits > power:
                 bits = bits / power
                 n = n + 1
-            return f"{bits:.3f} {units.get(n)}"
+            return f"{bits:.2f} {units.get(n)}"
         return f"`{convert(self.__output.get(opt).get('bandwidth')*8)}`"
 
     def get_usage(self) -> str:
@@ -126,11 +126,11 @@ class Speedtester:
             while bits > power:
                 bits = bits / power
                 n = n + 1
-            return f"{bits:.3f} {units.get(n)}"
+            return f"{bits:.2f} {units.get(n)}"
         return f"`{convert(self.__output.get('upload').get('bytes') + self.__output.get('download').get('bytes'))}`"
 
     def get_ping(self, opt: str) -> str:
-        return f"`{self.__output.get('ping').get(opt):.3f}`"
+        return f"`{self.__output.get('ping').get(opt):.2f}`"
 
     def get_time(self) -> str:
         return f"`{datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')}`"
