@@ -130,7 +130,7 @@ install_sycgram(){
     delete_old_image_and_container;
 
     echo -e "${yellow}正在拉取镜像...${plain}"
-    docker pull ${GITHUB_IMAGE_PATH}:main
+    docker pull ${GITHUB_IMAGE_PATH}:lastest
 
     echo -e "${yellow}正在启动容器...${plain}"
     docker run $1 \
