@@ -25,7 +25,7 @@ class Speedtester:
         logger.info(
             f"Speedtest使用了 {time()-self._timer:.5f} 秒结束。")
 
-    async def running(self, cmd: str) -> Tuple[str]:
+    async def running(self, cmd: str) -> Tuple[str, str]:
         """开始执行speedtest
 
         Args:
@@ -50,6 +50,7 @@ class Speedtester:
             # 如果 error 存在且非空，则返回错误信息
             error = self.__output.get('error')
             if error:
+                logger.info(f"Error{error}")
                 return f"⚠️Speedtest 错误\n```{error}```", ''
             text = f"**[Speedtest]({self.get_url()})**\n" \
                 f"`测速点: {self.get_sponsor()}`\n" \

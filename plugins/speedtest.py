@@ -48,9 +48,10 @@ async def speedtest(_: Client, msg: Message):
                 return await show_exception(msg, "测速超时")
         else:
             return await show_cmd_tip(msg, cmd)
-    await delete_this(msg)
     if not link:
         return await msg.edit_text(text)
+    else:
+        await delete_this(msg)
 
     # send speed report
     try:
