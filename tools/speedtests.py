@@ -45,13 +45,13 @@ class Speedtester:
             self.__server: Dict[str, Any] = self.__output.get('server')
         except Exception as e:
             logger.error(e)
-            return f"⚠️Speedtest 错误\n```{res.get('error')}```", ''
+            return f"⚠️Speedtest 错误 `{res.get('error')}`", ''
         else:
             # 如果 error 存在且非空，则返回错误信息
             error = self.__output.get('error')
             if error:
-                logger.info(f"Error{error}")
-                return f"⚠️Speedtest 错误\n```{error}```", ''
+                logger.info(f"Error {error}")
+                return f"⚠️Speedtest 错误 `{error}`", ''
             text = f"**[Speedtest]({self.get_url()})**\n" \
                 f"`测速点: {self.get_sponsor()}`\n" \
                 f"`本次用量: {self.get_usage()}`\n" \
