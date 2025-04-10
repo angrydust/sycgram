@@ -116,10 +116,10 @@ class Speedtester:
 
     def get_usage(self) -> str:
         def convert(bits) -> str:
-            power = 1000
+            power = 1024
             n = 0
             units = {
-                0: 'bit',
+                0: 'B',
                 1: 'KB',
                 2: 'MB',
                 3: 'GB',
