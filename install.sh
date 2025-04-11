@@ -45,25 +45,27 @@ pre_check() {
 }
 
 delete_old_image_and_container(){
-    # 获取最新指令说明
-    # 远程file
-    remote_file="https://raw.githubusercontent.com/angrydust/sycgram/main/data/command.yml"
-    # 本地file
-    local_cmd_file="${PROJECT_PATH}/data/command.yml"
-    if [[ -f ${local_cmd_file} ]]; then
-        t=$(date "+%H_%M_%M")
-        mkdir -p "${PROJECT_PATH}/data/command" >/dev/null 2>&1
-
-        echo -e "${yello}正在备份${plain} >>> ${local_cmd_file}"
-        cp ${local_cmd_file} "${PROJECT_PATH}/data/command/command.yml.${t}"
-    fi
-    curl -fsL ${remote_file} > ${local_cmd_file}
-
     echo -e "${yellow}正在删除旧版本容器...${plain}"
     docker rm -f $(docker ps -a | grep ${CONTAINER_NAME} | awk '{print $1}')
 
     echo -e "${yellow}正在删除旧版本镜像...${plain}"
     docker image rm -f $(docker images | grep ${CONTAINER_NAME} | awk '{print $3}')
+}
+
+update_command(){
+      # 获取最新指令说明
+      # 远程file
+      remote_file="https://raw.githubusercontent.com/angrydust/sycgram/main/data/command.yml"
+      # 本地file
+      local_cmd_file="${PROJECT_PATH}/data/command.yml"
+      if [[ -f ${local_cmd_file} ]]; then
+          t=$(date "+%H_%M_%M")
+          mkdir -p "${PROJECT_PATH}/data/command" >/dev/null 2>&1
+
+          echo -e "${yello}正在备份${plain} >>> ${local_cmd_file}"
+          cp ${local_cmd_file} "${PROJECT_PATH}/data/command/command.yml.${t}"
+      fi
+      curl -fsL ${remote_file} > ${local_cmd_file}
 }
 
 check_and_create_config(){
@@ -108,7 +110,7 @@ view_docker_log(){
 
 uninstall_sycgram(){
     delete_old_image_and_container;
-    rm -rf ${project_path}
+    rm -rf ${PROJECT_PATH}
     echo -e "已删除${PROJECT_PATH}"
 }
 
@@ -119,28 +121,40 @@ reinstall_sycgram(){
 }
 
 install_sycgram(){
-
-    printf "请输入 sycgram 容器的名称："
-    read -r container_name <&1
-    
-    PROJECT_PATH="/opt/${container_name}"
-
     pre_check;
     check_and_create_config;
-    delete_old_image_and_container;
+    update_command;
 
     echo -e "${yellow}正在拉取镜像...${plain}"
     docker pull ${GITHUB_IMAGE_PATH}:latest
 
     echo -e "${yellow}正在启动容器...${plain}"
-    docker run $1 \
-    --name ${container_name} \
+    docker run -it \
+    --name ${CONTAINER_NAME} \
     --env TZ="Asia/Shanghai" \
     --restart always \
     --network host \
-    --hostname ${container_name} \
+    --hostname ${CONTAINER_NAME} \
     -v ${PROJECT_PATH}/data:/sycgram/data \
     ${GITHUB_IMAGE_PATH}:latest
+}
+
+update_sycgram(){
+      delete_old_image_and_container;
+      update_command;
+
+      echo -e "${yellow}正在拉取镜像...${plain}"
+      docker pull ${GITHUB_IMAGE_PATH}:latest
+
+      echo -e "${yellow}正在启动容器...${plain}"
+      docker run -itd \
+      --name ${CONTAINER_NAME} \
+      --env TZ="Asia/Shanghai" \
+      --restart always \
+      --network host \
+      --hostname ${CONTAINER_NAME} \
+      -v ${PROJECT_PATH}/data:/sycgram/data \
+      ${GITHUB_IMAGE_PATH}:latest
 }
 
 show_menu() {
@@ -159,10 +173,10 @@ show_menu() {
         exit 0
         ;;
     1)
-        install_sycgram "-it"
+        install_sycgram
         ;;
     2)
-        install_sycgram "-itd"
+        update_sycgram
         ;;
     3)
         stop_sycgram
