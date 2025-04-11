@@ -117,7 +117,7 @@ uninstall_sycgram(){
 reinstall_sycgram(){
     rm -rf ${PROJECT_PATH}
     echo -e "已删除${PROJECT_PATH}"
-    install_sycgram "-it"
+    install_sycgram
 }
 
 install_sycgram(){
