@@ -53,10 +53,10 @@ class Speedtester:
                 logger.info(f"Error {error}")
                 return f"⚠️Speedtest 错误 `{error}`", ''
             text = f"**[Speedtest]({self.get_url()})**\n" \
-                f"`测速点: {self.get_sponsor()}`\n" \
-                f"`本次用量: {self.get_usage()}`\n" \
-                f"`下载速度: {self.get_speed('download')}`\n" \
-                f"`上传速度: {self.get_speed('upload')}`\n" \
+                f"`测速点:` {self.get_sponsor()}\n" \
+                f"`本次用量:` {self.get_usage()}\n" \
+                f"`下载速度:` {self.get_speed('download')} \n" \
+                f"`上传速度:` {self.get_speed('upload')} \n" \
                 f"`延迟: `{self.get_ping('latency')} ms \n" \
                 f"`CST: {self.get_time()}`\n"
             return text, f"{self.get_url()}.png"
@@ -72,7 +72,7 @@ class Speedtester:
                 return "**{SYCGRAM_ERROR}**\n> # `⚠️ 无法获取服务器ids`"
             else:
                 tmp = '\n'.join(
-                    f"`{k.get('id')}` **|** {k.get('name')} **|** {k.get('location')} {k.get('country')}"
+                    f"`{k.get('id')}` **|** `{k.get('name')}` **|** `{k.get('location')}` `{k.get('country')}`"
                     for k in self.__output.get('servers')
                 )
                 return f"**Speedtest节点列表：**\n{tmp}"
