@@ -69,7 +69,7 @@ google:
   usage: 回复一条消息，或直接使用
 
 speedtest:
-  cmd: c
+  cmd: v
   format: -speedtest <无|节点ID|list|update>
   usage: 服务器本地网络测速
 
