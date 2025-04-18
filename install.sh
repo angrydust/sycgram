@@ -105,6 +105,7 @@ restart_sycgram(){
 }
 
 fish_sycgram(){
+    echo -e "${yellow}进入容器中...${plain}"
     docker exec -it ${CONTAINER_NAME} fish
 }
 
