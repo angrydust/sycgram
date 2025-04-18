@@ -104,6 +104,10 @@ restart_sycgram(){
     fi
 }
 
+fish_sycgram(){
+    docker exec -it ${CONTAINER_NAME} fish
+}
+
 view_docker_log(){
     docker logs -f $(docker ps -a | grep ${GITHUB_IMAGE_NAME} | awk '{print $1}')
 }
@@ -163,9 +167,10 @@ show_menu() {
     echo -e "  ${green}2.${plain}  更新"
     echo -e "  ${green}3.${plain}  停止"
     echo -e "  ${green}4.${plain}  重启"
-    echo -e "  ${green}5.${plain}  查看日志"
-    echo -e "  ${green}6.${plain}  重新安装"
-    echo -e "  ${green}7.${plain}  卸载"
+    echo -e "  ${green}5.${plain}  进入容器"
+    echo -e "  ${green}6.${plain}  查看日志"
+    echo -e "  ${green}7.${plain}  重新安装"
+    echo -e "  ${green}8.${plain}  卸载"
     echo -e "  ${green}0.${plain}  退出脚本"
     read -ep "请输入选择 [0-7]: " option
     case "${option}" in
@@ -185,12 +190,15 @@ show_menu() {
         restart_sycgram
         ;;
     5)
-        view_docker_log
+        fish_sycgram
         ;;
     6)
-        reinstall_sycgram
+        view_docker_log
         ;;
     7)
+        reinstall_sycgram
+        ;;
+    8)
         uninstall_sycgram
         ;;
     *)
