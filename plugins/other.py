@@ -13,7 +13,7 @@ from pyrogram.enums import ParseMode
 async def diss(_: Client, msg: Message):
     """喷人"""
     symbol = '💢 '
-    api = 'https://zuan.shabi.workers.dev/'
+    api = 'https://api.oddfar.com/yl/q.php?c=1009&encode=text'
     await msg.edit_text(f"{symbol}正在准备开喷。")
     await get_api(api=api, msg=msg)
 
@@ -22,8 +22,7 @@ async def diss(_: Client, msg: Message):
 async def tg(_: Client, msg: Message):
     """舔狗"""
     symbol = '👅 '
-    # api = 'http://ovooa.com/API/tgrj/api.php'
-    api='https://www.xzccc.com/api/dog/'
+    api = 'https://v.api.aa1.cn/api/tiangou/'
     await msg.edit_text(f"{symbol}正在准备开舔。")
     await get_api(api=api, msg=msg)
 
